@@ -69,7 +69,7 @@ CORS_ALLOWED_ORIGINS = [
 
 ROOT_URLCONF = "noter.urls"
 
-ALLOWED_HOSTS = '.vercel.app'
+ALLOWED_HOSTS = ['*', '.vercel.app']
 
 TEMPLATES = [
     {

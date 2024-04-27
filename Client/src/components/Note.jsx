@@ -1,14 +1,9 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../functions';
 
 const Note = ({ id, title, dateModified, onDelete }) => {
-	const formatDate = (dateString) => {
-		const date = new Date(dateString);
-		const options = { month: 'long', day: 'numeric', year: 'numeric' };
-		return date.toLocaleDateString('en-US', options);
-	};
-
+  
 	const formattedDate = formatDate(dateModified);
 
 	const availableColors = [
@@ -31,7 +26,7 @@ const Note = ({ id, title, dateModified, onDelete }) => {
 	};
 
 	const confirmDelete = () => {
-    onDelete(id)
+		onDelete(id);
 		setShowDeleteModal(false);
 	};
 
@@ -41,21 +36,23 @@ const Note = ({ id, title, dateModified, onDelete }) => {
 
 	return (
 		<div>
-			<Link
+			<div
 				style={{ background: bgColor }}
-				className="rounded-lg p-4 block hover:scale-[101%] duration-100"
+				className="hover:scale-[101%] duration-100 flex rounded-lg p-4 "
 			>
-				<h2 className="text-2xl text-lightBlack font-bold">{title}</h2>
-				<div className="flex items-center justify-between w-full">
+				<Link to={`/edit/${id}`} className="block w-full flex-1">
+					<h2 className="text-2xl text-lightBlack font-bold mb-3">{title}</h2>
 					<p className="text-xs text-gray-600">{formattedDate}</p>
+				</Link>
+				<div className="flex flex-col justify-end">
 					<button
 						className="bg-neutral-100 border border-black hover:bg-red-600 text-black py-2 px-4 rounded-lg text-sm duration-200"
-						onClick={handleDelete}
+						onClick={() => handleDelete(id)}
 					>
 						Delete
 					</button>
 				</div>
-			</Link>
+			</div>
 
 			{showDeleteModal && (
 				<div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">

@@ -14,6 +14,7 @@ class UpdateNote(UpdateView):
   
 def ListNotes(request):
   notes = Note.objects.all()
+  
   notes = serializers.serialize('json', notes)
   print(notes)
   # return HttpResponse(notes, content_type='application/json')

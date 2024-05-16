@@ -63,12 +63,13 @@ CORS_ALLOW_METHODS = (
     "POST",
     "PUT",
 )
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
 ROOT_URLCONF = "noter.urls"
+
+ALLOWED_HOSTS = ['*', '.vercel.app']
 
 TEMPLATES = [
     {
@@ -94,12 +95,19 @@ WSGI_APPLICATION = "noter.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Notes',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',  # Or the IP address/hostname of your PostgreSQL server
-        'PORT': '5432',        # Default PostgreSQL port
+        
+        # For Using sqlite for hosting without need of a databse
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'sqlite3.db',        
+
+        # My PostgreSQL Settings for local database
+        
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'Notes',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'admin',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
     }
 }
 
